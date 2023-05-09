@@ -1,0 +1,40 @@
+{% extends 'main/layout.html'%}
+
+{% block title %} Проект {% endblock %}
+
+{% block content %}
+
+<main>
+    <div class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 text-center align-self-center py-5">
+					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Циклы</h4>
+                                            <a href="{% url 'cycle1' %}" class="btn mt-4">Цикл 1 </a>
+                                            <a href="{% url 'cycle2' %}" class="btn mt-4"> Цикл 2 </a><br>
+                                            <a href="{% url 'cycle3' %}" class="btn mt-4"> Цикл 3 </a>
+                                            <a href="{% url 'cycle4' %}" class="btn mt-4"> Цикл 4 </a><br>
+                                            <a href="{% url 'cycle5' %}" class="btn mt-4"> Цикл 5 </a>
+                                            <a href="{% url 'cycle6' %}" class="btn mt-4"> Цикл 6 </a><br>
+                                            <a href="{% url 'cycle7' %}" class="btn mt-4"> Цикл 7 </a>
+                                            <a href="{% url 'cycle8' %}" class="btn mt-4"> Цикл 8 </a>
+				      					</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

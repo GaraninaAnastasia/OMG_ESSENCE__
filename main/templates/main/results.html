@@ -1,0 +1,44 @@
+{% extends 'main/cycle.html'%}
+{% block title %} Результаты {% endblock %}
+
+
+{% block content %}
+
+<div class="check-group2">
+<h1> Результаты </h1>
+</div><br>
+
+
+<div class="check-group3">
+    <h2> Сущности: </h2>
+    <ul>
+        {%for res in res%}
+        <li>{{res}}</li><br>
+         {% endfor %}
+  </ul>
+</div><br>
+
+<div class="check-group4">
+    <h2> Диаграмма </h2>
+{{ graph_div|safe }}
+</div><br>
+
+<div class="check-group">
+    <h2> Причины: </h2>
+    <ul>
+        {%for reason in reason%}
+        <li>{{reason}}</li><br>
+         {% endfor %}
+  </ul>
+</div><br>
+
+<div class="check-group">
+    <h2> Рекомендации: </h2>
+    <ul>
+        {%for recommend in recommend%}
+        <li>{{recommend}}</li><br>
+         {% endfor %}
+  </ul>
+</div><br>
+<input type="button" class="btn mt-4" onclick="history.back();" value="Вернуться к оценке"/>
+{% endblock %}

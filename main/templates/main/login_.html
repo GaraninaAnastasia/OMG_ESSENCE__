@@ -1,0 +1,47 @@
+{% extends 'main/layout.html'%}
+{% load static %}
+{% block title %} Вход {% endblock %}
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="card-3d-wrap mx-auto">
+	<div class="card-front">
+		<div class="center-wrap">
+			<div class="section text-center">
+				<h4 class="mb-4 pb-3">Вход</h4> <!--Форма входа-->
+				<form method="POST">
+					{% csrf_token %}
+					{{ login_form|crispy }}<br>
+					<button class="btn btn-primary" type="submit">Войти</button>
+				</form>
+
+
+<!--				<form method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="oqh8UxKItN4f2tTTn0EjSOqZDeODQdURvM0ynVwrZrcOQgvYr8nyaDRAMEds6biC">-->
+<!--					{% csrf_token %}-->
+<!--				  <div class="form-row">-->
+
+<!--					<label for="id_username" class="required">Имя пользователя:</label>
+						<input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">-->
+<!--				  </div>-->
+<!--				  <div class="form-row">-->
+
+<!--					<label for="id_password" class="required">Пароль:</label>
+						<input type="password" name="password" autocomplete="current-password" required id="id_password">-->
+<!--					<input type="hidden" name="next" value="/admin/">-->
+<!--				  </div>-->
+<!--				  <div class="submit-row">-->
+<!--					<input type="submit" value="Войти">-->
+<!--				  </div>-->
+<!--				</form>-->
+
+
+				<p class="text-center">Нет аккаунта? <a href="/register">Создать аккаунт</a>.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

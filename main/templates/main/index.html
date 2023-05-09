@@ -1,0 +1,33 @@
+{% extends 'main/layout.html'%}
+{% block title %} Вход {% endblock %}
+
+
+{% block content %}
+<!--	<a href="https://front.codes/" class="logo" target="_blank">-->
+<!--	</a>-->
+
+<div class="card-3d-wrap mx-auto">
+	<div class="card-front">
+		<div class="center-wrap">
+			<div class="section text-center">
+				<h4 class="mb-4 pb-3">Здравствуйте!</h4>
+				<a>Здесь Вы можете отслеживать ход Вашего программного проекта, оценить его прогресс и "здоровье"
+					согласно стандарту OMG ESSENCE.</a><br>
+				<a>Для оценки необходимо зарегистрироваться или войти.</a><br>
+				{% if user.is_authenticated %}
+					<a href="{% url 'standartproject' %}" class="btn mt-4" >Оценить проект</a>
+				{% endif %}
+
+<!--				<div class="form">-->
+<!--					<form method="POST">-->
+<!--						{% csrf_token %}-->
+<!--						{{ login_form }}-->
+<!--						<a href="{% url 'login_' %}" class="btn mt-4" >Войти</a>-->
+<!--						<a href="{% url 'register' %}" class="btn mt-4"> Зарегистрироваться </a>-->
+<!--					</form>-->
+<!--				</div>-->
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

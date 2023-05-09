@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+
+/* общие настройки для всей страницы */
+body {
+  /* отступы */
+  margin: 2em;
+  /* цвет фона */
+  background:  #53699e;/*#E9F1F3*/
+  /* добавляем адаптивное расположение элементов */
+  display: flex;
+  /* расстояние между элементами */
+  gap: 1rem;
+  /* разрешаем увеличивать размеры областей в зависимости от размеров элемента */
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* настройки для всего элемента с чекбоксом */
+.checkbox {
+  /* меняем внешний вид курсора */
+  cursor: pointer;
+  /* выравниваем элементы по центру */
+  display: flex;
+  align-items: center;
+}
+
+/* отдельные настройки для самого чекбокса */
+.checkbox__input {
+  /* устанавливаем абсолютное позиционирование */
+  position: absolute;
+  /* задаём высоту и ширину */
+  width: 1.375em;
+  height: 1.375em;
+  /* делаем чекбокс непрозрачным, чтобы скрыть исходный элемент и заменить его потом нарисованным */
+  opacity: 0;
+  /* меняем внешний вид курсора */
+  cursor: pointer;
+}
+
+/* настройки для SVG-иконки */
+.checkbox__icon {
+  /* размеры совпадают с размерами скрытого чекбокса */
+  width: 1.375em;
+  height: 1.375em;
+  /* убираем ограничение по наименьшей ширине блока */
+  flex-shrink: 0;
+  /* разрешаем отображать содержимое за пределами блока */
+  overflow: visible;
+}
+
+/* общие настройки для нового чекбокса и галочки */
+.checkbox__icon .tick {
+  /* рисовать будем всё отрезками по 20 пикселей */
+  stroke-dasharray: 20px;
+  /* но сместим начало всех отрезков тоже на 20 пикселей, чтобы пока галочка не рисовалась */
+  stroke-dashoffset: 20px;
+  /* это даст плавную анимацию отрисовки галочки */
+  transition: stroke-dashoffset 0.2s ease-out;
+
+}
+
+/* настройки для подписи чекбокса */
+.checkbox__label {
+  /* добавляем отступ слева */
+  margin-left: 0.5em;
+}
+
+/* включаем возможность поставить галочку */
+.checkbox__input:checked + .checkbox__icon .tick {
+  /* убираем смещение для отрезков, чтобы включить анимацию галочки */
+  stroke-dashoffset: 0;
+}
+
+
+.check-group {
+  /* делаем группе отдельный фон */
+  background: #b5cef5;
+  /* ограничиваем ширину блока, чтобы он не расползался */
+  width: 70rem;
+  /* добавляем отступы */
+  padding: 1rem;
+  /* делаем красивое скругление и тень */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 10, 0.2);
+  /* сразу добавляем два счётчика, они понадобятся для подсчёта выбранных элементов */
+  counter-reset: total;
+  counter-reset: checked;
+}
+
+.check-group3 {
+  /* делаем группе отдельный фон */
+  background: #b5cef5;
+  /* ограничиваем ширину блока, чтобы он не расползался */
+  width: 23rem;
+  /* добавляем отступы */
+  padding: 1rem;
+  /* делаем красивое скругление и тень */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 10, 0.2);
+  /* сразу добавляем два счётчика, они понадобятся для подсчёта выбранных элементов */
+  counter-reset: total;
+  counter-reset: checked;
+}
+
+.check-group4 {
+  /* делаем группе отдельный фон */
+  background: #b5cef5;
+  /* ограничиваем ширину блока, чтобы он не расползался */
+  width: 43rem;
+  /* добавляем отступы */
+  padding: 1rem;
+  /* делаем красивое скругление и тень */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 10, 0.2);
+  /* сразу добавляем два счётчика, они понадобятся для подсчёта выбранных элементов */
+  counter-reset: total;
+  counter-reset: checked;
+}
+
+.check-group2 {
+  /* ограничиваем ширину блока, чтобы он не расползался */
+  width: 70rem;
+}
+
+/* делаем отступы внутри группы */
+.check-group > * + * {
+  margin-top: 0.75rem;
+}
+
+/* подсчитываем количество всех чекбоксов */
+.check-group .checkbox {
+  counter-increment: total;
+}
+
+/* считаем только отмеченные галочки */
+.check-group input[type=checkbox]:checked {
+  counter-increment: checked;
+}
+
+/* настраиваем внешний вид строки с результатом */
+.check-group__result {
+  /* делаем жирный шрифт */
+  font-weight: bold;
+  /* немного отступаем сверху */
+  padding-top: 0.75rem;
+  /* рисуем тонкую линию над текстом */
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* обрабатываем результаты */
+.check-group__result:after {
+  /* добавляем строку со значениями счётчиков */
+  content: counter(checked) " / " counter(total);
+  /* добавляем отступ слева */
+  padding-left: 1ch;
+}
+
+h1{
+/* отступы */
+  margin: 1em;
+  }
+
+ /*Кнопки*/
+.btn{
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition : all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  letter-spacing: 1px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+  border: none;
+  background-color: #acadd2;
+  color: #102770;
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+}
+.btn:active,
+.btn:focus{
+  background-color: #102770;
+  color: #acadd2;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+.btn:hover{
+  background-color: #102770;
+  color: #acadd2;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+
+/*Шапка*/
+.site-header .navbar-nav .nav-link {
+  color: #102770;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #acadd2;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+
+.site-header .navbar-nav .nav-link.active {
+font-weight: 500;
+}

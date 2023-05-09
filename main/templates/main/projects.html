@@ -1,0 +1,18 @@
+{% extends 'main/layout.html'%}
+{% block title %} Проекты {% endblock %}
+
+{% block content %}
+<main>
+<div class="card-3d-wrap mx-auto">
+	<div class="card-front">
+		<div class="center-wrap">
+			<div class="section text-center">
+			    <h4 class="mb-4 pb-3">Выбор проекта</h4>
+                <a href="" class="btn mt-4">Собрать проект </a>
+                <a href="{% url 'standartproject' %}" class="btn mt-4"> Стандартный проект </a>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}

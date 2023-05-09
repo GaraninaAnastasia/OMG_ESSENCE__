@@ -1,0 +1,438 @@
+{% extends 'main/cycle.html'%}
+{% block title %} Цикл 7 {% endblock %}
+
+
+{% block content %}
+<form action="results_7" method="post">
+        {% csrf_token %}
+<div class="check-group2">
+<h1>Заинтересованные стороны</h1>
+</div>
+
+<div class="check-group">
+    <h2> Удовлетворены для разворачивания </h2>
+    <label for="myCheckbox01" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox01" name = "Удовлетворены для разворачивания">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label">Представители заинтересованных сторон обеспечивают обратную связь о системе с точки зрения их группы заинтересованных сторон.</span>
+  </label>
+
+  <label for="myCheckbox02" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox02" name = "Удовлетворены для разворачивания">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Представители заинтересованных сторон подтверждают, что они согласны с тем, что система готова к развертыванию </span>
+  </label>
+</div>
+
+
+
+<!-- ВОЗМОЖНОСТЬ-->
+<div class="check-group2">
+<h1>Возможность</h1>
+</div>
+
+<div class="check-group">
+    <h2> Адресована </h2>
+
+  <label for="myCheckbox03" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox03" name = "Адресована">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label">Доступна удобная система, которая наглядно обращается к этой возможности. </span>
+  </label>
+
+   <label for="myCheckbox04" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox04" name = "Адресована">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованные стороны согласны с тем, что доступное решение стоит развернуть. </span>
+  </label>
+
+   <label for="myCheckbox05" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox05" name = "Адресована">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованные стороны удовлетворены тем, что разработанное решение использует возможность.</span>
+  </label>
+</div>
+
+
+<!-- ТРЕБОВАНИЯ-->
+<div class="check-group2">
+<h1>Требования</h1>
+</div>
+<div class="check-group">
+    <h2> Адресованы </h2>
+
+    <label for="myCheckbox06" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox06" name = "Адресованы">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label">Достаточно требований для того, чтобы полученная система была приемлемой для заинтересованных сторон.</span>
+  </label>
+
+    <label for="myCheckbox07" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox07" name = "Адресованы">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованные стороны принимают требования как точно отражающие то, что система делает и не делает. </span>
+  </label>
+
+    <label for="myCheckbox08" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox08" name = "Адресованы">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Внедренный набор требований обеспечивает ясную ценность для заинтересованных сторон. </span>
+  </label>
+
+    <label for="myCheckbox09" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox09" name = "Адресованы">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Система, реализующая требования, принимается заинтересованными сторонами как заслуживающая практического применения. </span>
+  </label>
+</div><br>
+
+<div class="check-group">
+    <h2> Удовлетворены </h2>
+  <label for="myCheckbox10" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox10" name = "Удовлетворены">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованные стороны принимают требования как точные данные о том, что им требуется для полного удовлетворения потребности в новой системе. </span>
+  </label>
+
+  <label for="myCheckbox11" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox11" name = "Удовлетворены">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Не существует невыполненных требований, препятствующих принятию системы как полностью удовлетворяющей требованиям. </span>
+  </label>
+
+   <label for="myCheckbox12" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox12" name = "Удовлетворены">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованные стороны признают, что система полностью соответствует требованиям. </span>
+  </label>
+</div>
+
+<!-- ПРОГРАММНАЯ СИСТЕМА-->
+<div class="check-group2">
+<h1>Программная система</h1>
+</div>
+<div class="check-group">
+    <h2> Демонстрируемая </h2>
+ <label for="myCheckbox13" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox13" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Ключевые архитектурные характеристики были продемонстрированы. </span>
+  </label>
+
+    <label for="myCheckbox14" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox14" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Система может быть задействована и ее производительность может быть измерена. </span>
+  </label>
+
+    <label for="myCheckbox15" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox15" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Ключевые конфигурации оборудования были продемонстрированы. </span>
+
+</label>
+    <label for="myCheckbox16" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox16" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Ключевые интерфейсы системы были продемонстрированы. </span>
+  </label>
+
+   <label for="myCheckbox17" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox17" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Интеграция с существующими системами была продемонстрирована. </span>
+  </label>
+
+   <label for="myCheckbox18" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox18" name = "Демонстрируемая">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Соответствующие заинтересованные стороны согласны с тем, что продемонстрированная архитектура является подходящей. </span>
+  </label>
+</div><br>
+
+<div class="check-group">
+    <h2> Пригодна для использования </h2>
+ <label for="myCheckbox19" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox19" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Система может эксплуатироваться заинтересованными сторонами, которые ее используют. </span>
+  </label>
+
+    <label for="myCheckbox20" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox20" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Функциональность, предоставленная системой, была протестирована. </span>
+  </label>
+
+    <label for="myCheckbox21" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox21" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Производительность системы приемлема для заинтересованных сторон. </span>
+
+</label>
+    <label for="myCheckbox22" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox22" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Уровни дефектов приемлемы для заинтересованных сторон. </span>
+  </label>
+
+   <label for="myCheckbox23" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox23" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Система полностью документирована. </span>
+  </label>
+
+   <label for="myCheckbox24" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox24" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Содержание релиза известно. </span>
+  </label>
+
+    <label for="myCheckbox25" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox25" name = "Пригодна для использования">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Добавленная стоимость, предоставляемая системой, очевидна. </span>
+  </label>
+</div>
+
+
+<!-- РАБОТА-->
+<div class="check-group2">
+<h1>Работа</h1>
+</div>
+<div class="check-group">
+<h2> Закончена </h2>
+    <label for="myCheckbox26" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox26" name = "Закончена">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Все нерешенные задачи относятся к поддержке системы или связаны с подготовкой следующей части работы. </span>
+  </label>
+
+<label for="myCheckbox27" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox27" name = "Закончена">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Ожидаемые результаты работы достигнуты. </span>
+  </label>
+
+    <label for="myCheckbox28" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox28" name = "Закончена">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Заинтересованная сторона приняла полученную систему программного обеспечения. </span>
+  </label>
+</div>
+
+<!-- КОМАНДА-->
+<div class="check-group2">
+<h1>Команда</h1>
+</div>
+
+<div class="check-group">
+ <h2> В разработке </h2>
+    <label for="myCheckbox29" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox29" name = "В разработке">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Команда последовательно выполняет свои обязательства. </span>
+  </label>
+
+    <label for="myCheckbox30" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox30" name = "В разработке">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Команда постоянно адаптируется к меняющимся условиям. </span>
+  </label>
+
+    <label for="myCheckbox31" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox31" name = "В разработке">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Команда выявляет и решает проблемы без посторонней помощи. </span>
+  </label>
+
+    <label for="myCheckbox32" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox32" name = "В разработке">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Эффективный прогресс достигается с минимальным отступлением и переработкой. </span>
+  </label>
+
+    <label for="myCheckbox33" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox33" name = "В разработке">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Потраченная впустую работа или потенциально возможная потраченная впустую работа постоянно выявляются и устраняются. </span>
+  </label>
+</div>
+
+<!-- ТЕХНОЛОГИЯ РАБОТЫ-->
+<div class="check-group2">
+<h1>Технология работы</h1>
+</div>
+
+<div class="check-group">
+  <h2> В использовании </h2>
+    <label for="myCheckbox34" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox34" name = "В использовании">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Практики и инструменты используются всей командой для выполнения своей работы. </span>
+  </label>
+
+    <label for="myCheckbox35" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox35" name = "В использовании">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Все члены команды имеют доступ к методам и инструментам, необходимым для их работы. </span>
+  </label>
+
+    <label for="myCheckbox36" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox36" name = "В использовании">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Вся команда вовлечена в адаптацию способа работы. </span>
+  </label>
+</div><br>
+
+<div class="check-group">
+ <h2>Работает хорошо</h2>
+<label for="myCheckbox37" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox37" name = "Работает хорошо">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Члены команды добиваются прогресса в соответствии с планом, используя и адаптируя методы работы в соответствии с текущим контекстом. </span>
+  </label>
+
+    <label for="myCheckbox38" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox38" name = "Работает хорошо">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Команда применяет практики естественным образом. </span>
+  </label>
+
+    <label for="myCheckbox39" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox39" name = "Работает хорошо">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Инструменты естественным образом поддерживают работу команды. </span>
+  </label>
+
+    <label for="myCheckbox40" class="checkbox">
+    <input class="checkbox__input" type="checkbox" id="myCheckbox40" name = "Работает хорошо">
+    <svg class="checkbox__icon" viewBox="0 0 22 22">
+      <rect width="21" height="21" x=".5" y=".5" fill="#FFF" stroke="#006F94" rx="3" />
+      <path class="tick" stroke="#04145c" fill="none" stroke-linecap="round" stroke-width="4" d="M4 10l5 5 9-9" />
+    </svg>
+    <span class="checkbox__label"> Команда постоянно настраивает используемые методы и инструменты. </span>
+  </label>
+</div><br>
+<input type="submit" class="btn mt-4" value="Оценить">
+</form>
+{% endblock %}
+
+
