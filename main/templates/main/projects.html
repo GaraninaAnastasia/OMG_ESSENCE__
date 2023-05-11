@@ -1,18 +1,46 @@
-{% extends 'main/layout.html'%}
-{% block title %} Проекты {% endblock %}
+<!--{% extends 'main/layout.html'%}-->
+<!--{% block title %} Проекты {% endblock %}-->
 
-{% block content %}
-<main>
-<div class="card-3d-wrap mx-auto">
-	<div class="card-front">
-		<div class="center-wrap">
-			<div class="section text-center">
-			    <h4 class="mb-4 pb-3">Выбор проекта</h4>
-                <a href="" class="btn mt-4">Собрать проект </a>
-                <a href="{% url 'standartproject' %}" class="btn mt-4"> Стандартный проект </a>
-            </div>
-        </div>
-    </div>
-</div>
-</main>
-{% endblock %}
+<!--{% block content %}-->
+<!--<main>-->
+<!--<div class="card-3d-wrap mx-auto">-->
+<!--	<div class="card-front">-->
+<!--		<div class="center-wrap">-->
+<!--			<div class="section text-center">-->
+<!--&lt;!&ndash;			    <h5 class="mb-4 pb-3">Создать проект</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form method="POST">&ndash;&gt;-->
+<!--&lt;!&ndash;                    {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;                    {{form.projectname}}&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span> {{ error }} </span><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit" class="btn btn-primary"> Сохранить </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+
+<!--                <h4 class="mb-4 pb-3">Ваши проекты</h4>-->
+<!--&lt;!&ndash;                <div class="check-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                    {{form.projectname}}&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    {%for my_pr in my_projects%}&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <button type="submit" class="btn btn-primary"> {{my_pr.projectname}} </button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="submit" onClick="save()"  class="btn btn-primary" value={{my_pr.projectname}}><br>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <button  href="{% url 'standartproject' %}" type="submit"> {{my_pr.projectname}}</button><br>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                     {% endfor %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                <select >&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            <option>{{my_projects.projectname}}</option>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                &lt;!&ndash;			<option value = "project" selected>{{form.projectname}}</option> &lt;!&ndash;параметр, который будет предварительно выбран &ndash;&gt;&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                </select>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 class="mb-4 pb-3">Выберите проект</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form method="POST">&ndash;&gt;-->
+<!--&lt;!&ndash;                    {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;                    {{form.projectname}}&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span> {{ error }} </span><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button href="{% url 'standartproject' %}" type="submit" class="btn btn-primary"> Оценить </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</main>-->
+<!--{% endblock %}-->

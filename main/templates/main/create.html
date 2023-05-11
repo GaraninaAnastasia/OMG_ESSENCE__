@@ -1,0 +1,24 @@
+{% extends 'main/layout.html'%}
+{% block title %} Проекты {% endblock %}
+
+{% block content %}
+<main>
+<div class="card-3d-wrap mx-auto">
+	<div class="card-front">
+		<div class="center-wrap">
+			<div class="section text-center">
+			    <h5 class="mb-4 pb-3" >Создать проект</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.projectname}}<br>
+                    <span> {{ error }} </span>
+<!--                    <input type="submit" onClick="save()" class="btn mt-4" value="Сохранить">-->
+                    <button type="submit" class="btn btn-primary"> Сохранить </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+{% endblock %}

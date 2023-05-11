@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.offline as pyo
 
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
+
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -13,11 +13,15 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .models import Est
+from .models import Estimation
 from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 
 from crispy_forms.helper import FormHelper
 from django import forms
+
+from .forms import NewUserForm
+from .forms import EstimationForm
 
 
 
@@ -62,39 +66,135 @@ def logout_request(request):
 
 def reference(request):
     return render(request, "main/reference.html")
-# Create your views here.
+
 def index(request):
     return render(request, "main/index.html")
 
+def create(request):
+    error = ''
+    if request.method == "POST":
+        form = EstimationForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            projectname = form.cleaned_data.get('projectname')
+            author = request.user
+            estim = Estimation.objects.create(cycle=1, zainteresovannye_storony=0, vosmojnost=0, trebovaniya=0,
+                                              programmnaya_sistema=0, rabota=0, komanda=0, tehnologiya_raboty=0,
+                                              author=author, projectname=projectname)
+            estim.save()
+            messages.info(request, f"Сохранено")
+            return redirect("standartproject")
+
+    form = EstimationForm()
+
+    data = {
+        'form': form,
+        "error": error
+    }
+
+    return render(request, "main/create.html", data)
+
 def projects(request):
+#     # error = ''
+#     # if request.method == "POST":
+#     #     form = EstimationForm(request.POST)
+#     #     if form.is_valid():
+#     #         # form.save()
+#     #         projectname = form.cleaned_data.get('projectname')
+#     #         author = request.user
+#     #         estim = Estimation.objects.create(cycle=1, zainteresovannye_storony=0, vosmojnost=0, trebovaniya=0,
+#     #                             programmnaya_sistema=0, rabota=0, komanda=0, tehnologiya_raboty=0,
+#     #                             author=author, projectname=projectname)
+#     #         estim.save()
+#     #         messages.info(request, f"Сохранено")
+#     #     else:
+#     #         error = "Форма неверна"
+#     #
+#     # form = EstimationForm()
+#
+#     author = request.user
+#     if Estimation.objects.filter(author=author).exists() == True:
+#         my_projects = Estimation.objects.filter(author=author).all()
+#     else:
+#         my_projects = []
+#         my_projects = my_projects.append("У вас пока нет проектов.")
+#
+#     # if request.method == 'POST':
+#     #     projectname = request.POST.getlist("{{my_pr.projectname}}")
+#
+#     data = {
+#         # 'form': form,
+#         # "error": error,
+#         "my_projects": my_projects,
+#         # "projectname": projectname
+#     }
+#
     return render(request, "main/projects.html")
 
 def standartproject(request):
     return render(request, "main/standartproject.html")
 
 def cycle1(request):
-    return render(request, "main/cycle1.html")
+    # if request.method == "POST":
+    #     form = EstimationForm(request.POST)
+    #     if form.is_valid():
+    #         # form.save()
+    #         projectname = form.cleaned_data.get('projectname')
+    # form = EstimationForm()
+    #
+    # data = {
+    #     'form': form
+    # }
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    else:
+        messages.info(request, f"Перед оценкой создайте проект.")
+        return redirect("create")
+
+    return render(request, "main/cycle1.html", {"my_projects": my_projects})
 
 def cycle2(request):
-    return render(request, "main/cycle2.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle2.html", {"my_projects": my_projects})
 
 def cycle3(request):
-    return render(request, "main/cycle3.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle3.html", {"my_projects": my_projects})
 
 def cycle4(request):
-    return render(request, "main/cycle4.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle4.html", {"my_projects": my_projects})
 
 def cycle5(request):
-    return render(request, "main/cycle5.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle5.html", {"my_projects": my_projects})
 
 def cycle6(request):
-    return render(request, "main/cycle6.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle6.html", {"my_projects": my_projects})
 
 def cycle7(request):
-    return render(request, "main/cycle7.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle7.html", {"my_projects": my_projects})
 
 def cycle8(request):
-    return render(request, "main/cycle8.html")
+    author = request.user
+    if Estimation.objects.filter(author=author).exists() == True:
+        my_projects = Estimation.objects.filter(author=author).all()
+    return render(request, "main/cycle8.html", {"my_projects": my_projects})
 
 # ЛЕПЕСТКОВАЯ ДИАГРАММА
 def graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr):
@@ -171,20 +271,20 @@ def repl(l, s):
     return(s)
 
 # Получение данных из базы
-def get_val(cycle_, z, v, t, p, r, k, tr, author):
-    if Est.objects.filter(cycle = cycle_, author = author).exists() == True:
+def get_val(cycle_, z, v, t, p, r, k, tr, author, projectname):
+    if Estimation.objects.filter(cycle = cycle_, author = author, projectname = projectname).exists() == True:
 
-        ev = Est.objects.filter(cycle = cycle_, author = author).update(cycle=cycle_, zainteresovannye_storony=z, vosmojnost=v, trebovaniya=t,
+        ev = Estimation.objects.filter(cycle = cycle_, author = author, projectname = projectname).update(cycle=cycle_, zainteresovannye_storony=z, vosmojnost=v, trebovaniya=t,
                                 programmnaya_sistema=p, rabota=r, komanda=k, tehnologiya_raboty=tr,
-                                author = author)
+                                author = author, projectname = projectname)
         # ev.save()
     else:
-        ev = Est.objects.create(cycle = cycle_, zainteresovannye_storony=z, vosmojnost=v, trebovaniya=t,
+        ev = Estimation.objects.create(cycle = cycle_, zainteresovannye_storony=z, vosmojnost=v, trebovaniya=t,
                                  programmnaya_sistema=p, rabota=r, komanda=k, tehnologiya_raboty=tr,
-                                 author = author)
+                                 author = author, projectname = projectname)
         ev.save()
 
-    evaluation = Est.objects.filter(cycle = cycle_).in_bulk([author.id])
+    evaluation = Estimation.objects.filter(cycle = cycle_, projectname = projectname).in_bulk([author.id])
     for id in evaluation:
         z = evaluation[id].zainteresovannye_storony
         v = evaluation[id].vosmojnost
@@ -196,9 +296,9 @@ def get_val(cycle_, z, v, t, p, r, k, tr, author):
     return(z, v, t, p, r, k, tr)
 
 
-def get_value_for_graph(cycle_, atable, author):
-    if Est.objects.filter(cycle=cycle_ - 1, author=author).exists() == True:
-        a = Est.objects.values_list(atable).get(cycle=cycle_ - 1, author=author)[0]
+def get_value_for_graph(cycle_, atable, author, projectname):
+    if Estimation.objects.filter(cycle=cycle_ - 1, author=author,projectname = projectname).exists() == True:
+        a = Estimation.objects.values_list(atable).get(cycle=cycle_ - 1, author=author, projectname = projectname)[0]
     else:
         a = 0
     return (a)
@@ -238,6 +338,8 @@ def results_1(request):
         list5_ = request.POST.getlist('Задуманы')
         list6_ = request.POST.getlist('Заявлена')
         list7_ = request.POST.getlist('Сформирована')
+        projectname = request.POST.get('Проект')
+
 
     prizn = repl(list_, prizn)
     predstavl = repl(list2_, predstavl)
@@ -305,7 +407,7 @@ def results_1(request):
 
     # Работа с базой
     author = request.user
-    get_val(cycle_, z, v, t, p, r, k, tr, author)
+    get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
     # if Est.objects.filter(cycle = 1, author=request.user).exists() == True:
     #
     #     ev = Est.objects.update(cycle=1, zainteresovannye_storony=z, vosmojnost=v, trebovaniya=t,
@@ -370,6 +472,8 @@ def results_2(request):
         list5_ = request.POST.getlist('Инициирована')
         list6_ = request.POST.getlist('Сотрудничает')
         list7_ = request.POST.getlist('Принципы установлены')
+        projectname = request.POST.get('Проект')
+
 
 
     vovlecheny = repl(list_, vovlecheny)
@@ -398,7 +502,7 @@ def results_2(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Причинами неуспеха могут быть: Заинтересованные стороны не участвуют в ходе проекта, участники команды не получают обратную связь, команда не получает информацию об изменении в ходе проекта. ")  # Причина
         recommend.append("Организуйте встречу с Заинтересованными сторонами и определите возможность и частоту совместных встреч. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
 
     else:
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
@@ -410,7 +514,7 @@ def results_2(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». Причинами неуспеха могут быть: участникам проекта не ясна ценность проекта и его перспектива, желаемый результат команде не понятен, критерии успеха не определены. ")  # Причина
         recommend.append("Обсудите с Заинтересованными сторонами последующие шаги реализации проекта, передайти требования каждому члену команды. ")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         v = nv
 
@@ -421,7 +525,7 @@ def results_2(request):
         recommend.append("Уточните у каждого члена команды его понимание задач и ценности проекта. Постарайтесь прийти к общему мнению и политике ведения проекта. Если возникнут трудности во время обсуждения, пригласите на встречу Заинтересованные стороны для уточнения из позиции по этому поводу. ")  # Рекомендация
         # t = 0 # Должна быть ссылка на результат из первого цикла
         author = request.user
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         t = nt
 
@@ -438,7 +542,7 @@ def results_2(request):
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Причинами неуспеха могут служить: команда не работает слаженно, члены команды не взаимодействуют между собой, не все члены команды понимают задачи, между членами команды присутствует напряжение. ")  # Причина
         recommend.append("Узнайте у команды моменты, которые тревожат каждого из членов команды, обсудите задачи каждого, обсудите дальнейший план действий и придерживайтесь его. Можно устроить пару неформальных встреч, для налаживания контакта между участниками проекта. ")  # Рекомендация
         author = request.user
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         k = nk
 
@@ -452,7 +556,7 @@ def results_2(request):
 
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, None, nr, nk, ntr, z, v, t, None, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
@@ -495,6 +599,9 @@ def results_3(request):
         list6_ = request.POST.getlist('Архитектура выбрана')
         list7_ = request.POST.getlist('Подготовлена')
         list8_ = request.POST.getlist('Основа заложена')
+        projectname = request.POST.get('Проект')
+
+    # projectname = list(projectname)
 
     vsoglasii = repl(list_, vsoglasii)
     cennost_ustanovlena = repl(list2_, cennost_ustanovlena)
@@ -520,7 +627,7 @@ def results_3(request):
         reason.append("Причиной такого результата может быть является слабая связь участников проекта с заинтересованными сторонами, заинтересованные стороны не помогают команде, ожидания от работы не удовлетворяет заинтересованные стороны. ")  # Причина
         recommend.append("Организуйте встречу с Заинтересованными сторонами для обсуждения последующих шагов в реализации проекта. ")  # Рекомендация
         author = request.user
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         z = nz
 
@@ -531,7 +638,7 @@ def results_3(request):
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». Причинами неуспеха могут быть: участникам проекта не ясна ценность проекта и его перспектива, желаемый результат команде не понятен, критерии успеха не определены. ")  # Причина
         recommend.append("Обсудите с командой и с Заинтересованными сторонами последующие шаги в реализации проекта. ")  # Рекомендация
         author = request.user
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». При выполнении задач могли возникнуть трудности. Возможно, некоторые члены команды не до конца понимают ценность проекта и конечный результат, некоторые члены команды могут по разному оценивать возможность решения проблем проекта. ")  # Причина
@@ -545,7 +652,7 @@ def results_3(request):
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны».  При выполнении членами команды своиз задач могли возникнуть трудности с пониманием того, какие проблемы будут решены с помощью конечного решения. К возможным причинам неуспеха данной альфы может оносится слабая связь между участниками команды и Заинтересованными сторонами, из-за отсутсвия коммуникации команда может не узнать об изменениях, или не сможет предложить свое решение. ")  # Причина
         recommend.append("Постарайтесь четко изложить проблемные места при выполнении задач, сообщите о проблемах Заинтересованным сторонам и вместе найдите наиболее правильные пути решения проблем. ")  # Рекомендация
         author = request.user
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможными причинами неуспеха может быть быстрое изменение требований со стороны Заинтересованных сторон. Члены команды не успевают перестраиваться между требованиями и пониманием задач, которые нужно решить для решения проблем проекта. ")  # Причина
@@ -557,7 +664,7 @@ def results_3(request):
         reason.append(". На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха могут служить: критерии при выборе архитектуры не согласованы, аппаратные платформы не определены, не выбраны языки программирования, в команде разногласия. ")  # Причина
         recommend.append("Проанализируйте результату предстоящей работы, решите, каким путем и с помощью каких инструментов будут достигнуты определенные результаты, найдите компромисс для всех участников проекта, если возникают трудности, обратитесь к Заинтересованным сторонам. ")  # Рекомендация
         author = request.user
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     else:
         p = np
 
@@ -566,7 +673,7 @@ def results_3(request):
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы». Причинами неуспеха могут служить: обязательства неясны, риски воздействия неочевидны, плана по дальнейшей работе нет, в команде имеются разногласия. ")  # Причина
         recommend.append("Поговорите с командой о плане дальнейших действий, выясните, почему произошли недопонимания, распределите обязанности опираясь на знания и навыки каждого члена команды.")  # Рекомендация
         author = request.user
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         r = nr
 
@@ -575,13 +682,13 @@ def results_3(request):
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Причинами неуспеха могут служить: ключевые методы и инструменты не выбраны, недостаточно квалификации у членов команды. ")  # Причина
         recommend.append("Правильно распределите задачи между членами команды, чтобы у каждого участника задачи совпадали с его навыками и знаниями. Можно заложить дополнительное время на изучение проблемные мест, получения новой информации. ")  # Рекомендация
         author = request.user
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     else:
         tr = ntr
-    k = get_value_for_graph(cycle_, "komanda", author)
+    k = get_value_for_graph(cycle_, "komanda", author, projectname)
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
@@ -625,6 +732,8 @@ def results_4(request):
         list6_ = request.POST.getlist('В разработке')
         list7_ = request.POST.getlist('В частичном использовании')
         list8_ = request.POST.getlist('В использовании')
+        projectname = request.POST.get('Проект')
+
 
 
     vsoglasii = repl(list_, vsoglasii)
@@ -652,7 +761,7 @@ def results_4(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Причиной такого результата может быть является слабая связь участников проекта с заинтересованными сторонами, заинтересованные стороны не помогают команде, ожидания от работы не удовлетворяет заинтересованные стороны. ")  # Причина
         recommend.append("Организуйте встречу с Заинтересованными сторонами для обсуждения последующих шагов в реализации проекта. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         z = nz
 
@@ -660,7 +769,7 @@ def results_4(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». При выполнении задач могли возникнуть трудности. Возможно, некоторые члены команды не до конца понимают ценность проекта и конечный результат, некоторые члены команды могут по разному оценивать возможность решения проблем проекта. ")  # Причина
         recommend.append("Обсудите с командой понимание проекта и решение поставленных задач. Если мнение между командой расходиться, прийдите к общему мнение или попросите помощи у Заинтересованных сторон. ")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         v = nv
 
@@ -669,7 +778,7 @@ def results_4(request):
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможными причинами неуспеха может быть быстрое изменение требований со стороны Заинтересованных сторон. Члены команды не успевают перестраиваться между требованиями и пониманием задач, которые нужно решить для решения проблем проекта. ")  # Причина
         recommend.append("Уточните у Заинтересованных сторон актуальность целей и задач проекта. Проверьте, чтобы понимание проекта и задачи всех участников команды совпадали с текущим представлением Заинтересованных сторон о проекте. ")  # Рекомендация
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         t = nt
 
@@ -677,7 +786,7 @@ def results_4(request):
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха могут служить: критерии при выборе архитектуры не согласованы, аппаратные платформы не определены, не выбраны языки программирования, в команде разногласия. ")  # Причина
         recommend.append("Предоставьте команде немного больше времени для обсуждения предстоящей работы, решите, каким путем и с помощью каких инструментов будут достигнуты определенные результаты, найдите компромисс для всех участников проекта. ")  # Рекомендация
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     else:
         p = np
 
@@ -685,7 +794,7 @@ def results_4(request):
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы». Причинами неуспеха могут служить: работа еще не началась, работы никто не контролирует, неравноценно распределены задачи между командой, нет прогресса. ")  # Причина
         recommend.append("Поинтересуйтесь у членов команды, как они справляются с поставленными задачами. Если есть трудности, перераспределите обязанности, составьте график работы, установите сроки, собирайте раз в неделю для отслеживания хода проекта. ")  # Рекомендация
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         r = nr
 
@@ -693,7 +802,7 @@ def results_4(request):
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Возможно, некоторые члены команды не приступили к выполнению своих задач или где-то запутались, перестали понимать что и для чего они это делают. Возможно отставание по срокам и Заинтересованные стороны не довольны достигаемым результатом. ")  # Причина
         recommend.append("Пристановите работу и проверьте, в каком состоянии задачи каждого из членов команды. Помогите или перераспределите задачи у тех, кто не может решить поставленные задачи. Уточните у Заинетресованных сторон, какой результат они ожадают на следующем цикле. ")  # Рекомендация
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         k = nk
 
@@ -703,7 +812,7 @@ def results_4(request):
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Команда не использует выбранные методы и инструменты реализации проекта, возможно, выбрали неподходящие практики и инструменты для использования. ")  # Причина
         recommend.append("Проанализируйте существующие методы и инструменты и выберите те, которые больше всего подходят для проекта вашего типа. Проконсультируйте с заинтересованными сторонами, обсудите внутри команды новые инструменты и предложите их на встрече.")  # Рекомендация
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     else:
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Работа с использованием выбранных инструментов началась, но возникли трудности.Возможно, выбранные методы не подходят для реализации поставленных задач, предложенные Заказчиками инструменты команде незнакомы или неудобны.  ")  # Причина
@@ -712,7 +821,7 @@ def results_4(request):
 
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
@@ -757,6 +866,7 @@ def results_5(request):
         list6_ = request.POST.getlist('В разработке')
         list7_ = request.POST.getlist('В использовании')
         list8_ = request.POST.getlist('Работает хорошо')
+        projectname = request.POST.get('Проект')
 
 
     vsoglasii = repl(list_, vsoglasii)
@@ -784,7 +894,7 @@ def results_5(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Причиной такого результата может быть является слабая связь участников проекта с заинтересованными сторонами, заинтересованные стороны не помогают команде, ожидания от работы не удовлетворяет заинтересованные стороны. ")  # Причина
         recommend.append("Организуйте встречу с Заинтересованными сторонами для обсуждения последующих шагов в реализации проекта. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         z = nz
 
@@ -792,7 +902,7 @@ def results_5(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». При выполнении задач могли возникнуть трудности. Возможно, некоторые члены команды не до конца понимают ценность проекта и конечный результат, некоторые члены команды могут по разному оценивать возможность решения проблем проекта. ")  # Причина
         recommend.append("Обсудите с командой понимание проекта и решение поставленных задач. Если мнение между командой расходиться, прийдите к общему мнение или попросите помощи у Заинтересованных сторон. ")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         v = nv
 
@@ -801,7 +911,7 @@ def results_5(request):
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможными причинами неуспеха может быть быстрое изменение требований со стороны Заинтересованных сторон. Члены команды не успевают перестраиваться между требованиями и пониманием задач, которые нужно решить для решения проблем проекта. ")  # Причина
         recommend.append("Уточните у Заинтересованных сторон актуальность целей и задач проекта. Проверьте, чтобы понимание проекта и задачи всех участников команды совпадали с текущим представлением Заинтересованных сторон о проекте. ")  # Рекомендация
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         t = nt
 
@@ -809,7 +919,7 @@ def results_5(request):
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха могут служить: ключевые архитектурные характеристики не продемонстрированы, конфигурации и интерфейсы не были продемонстрированы. ")  # Причина
         recommend.append("Предоставьте команде немного больше времени для того, чтобы найти ошибки и исправить их. Если есть трудности, которые команда не может решить сама, стоит обратить к заинтересованным сторонам для помощи или совета. Изучите более подробно материал, с которым команде предстоит работать. ")  # Рекомендация
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     else:
         p = np
 
@@ -817,7 +927,7 @@ def results_5(request):
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы».Причинами неуспеха могут служить: задачи не выполняются, отставание по срокам, простои в проекте, команда не справляется с задачами. ")  # Причина
         recommend.append("Перераспределите задачи между членами команды, найдите кого-то нового в команду с большей квалификацией для помощи, приостановите работу, разберитесь с незакрытыми задачами, перераспределите ресурсы и сроки выполнения и продолжите работу, исключая возникшие риски. ")  # Рекомендация
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         r = nr
 
@@ -825,7 +935,7 @@ def results_5(request):
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Возможно, некоторые члены команды не приступили к выполнению своих задач или где-то запутались, перестали понимать что и для чего они это делают. Возможно отставание по срокам и Заинтересованные стороны не довольны достигаемым результатом. ")  # Причина
         recommend.append("Пристановите работу и проверьте, в каком состоянии задачи каждого из членов команды. Помогите или перераспределите задачи у тех, кто не может решить поставленные задачи. Уточните у Заинетресованных сторон, какой результат они ожадают на следующем цикле. ")  # Рекомендация
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         k = nk
 
@@ -835,7 +945,7 @@ def results_5(request):
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Работа с использованием выбранных инструментов началась, но возникли трудности.Возможно, выбранные методы не подходят для реализации поставленных задач, предложенные Заказчиками инструменты команде незнакомы или неудобны.  ")  # Причина
         recommend.append("Проанализируйте существующие методы и инструменты и выберите те, которые больше всего подходят для проекта вашего типа. Проконсультируйте с заинтересованными сторонами, обсудите внутри команды новые инструменты и предложите их на встрече. ")  # Рекомендация
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     else:
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны».Причинами неуспеха могут служить: практики и инструменты не используются, команда отстает по срокам, инструменты не подходят для разработки, в команде есть недопонимание и разногласия по поводу выбранных средств.  ")
@@ -844,7 +954,7 @@ def results_5(request):
 
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
@@ -888,6 +998,8 @@ def results_6(request):
         list6_ = request.POST.getlist('В разработке')
         list7_ = request.POST.getlist('В использовании')
         list8_ = request.POST.getlist('Работает хорошо')
+        projectname = request.POST.get('Проект')
+
 
 
     vsoglasii = repl(list_, vsoglasii)
@@ -915,7 +1027,7 @@ def results_6(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Причиной такого результата может быть является слабая связь участников проекта с заинтересованными сторонами, заинтересованные стороны не помогают команде, ожидания от работы не удовлетворяет заинтересованные стороны. ")  # Причина
         recommend.append("Организуйте встречу с Заинтересованными сторонами для обсуждения последующих шагов в реализации проекта. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         z = nz
 
@@ -923,7 +1035,7 @@ def results_6(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». При выполнении задач могли возникнуть трудности. Возможно, некоторые члены команды не до конца понимают ценность проекта и конечный результат, некоторые члены команды могут по разному оценивать возможность решения проблем проекта. ")  # Причина
         recommend.append("Обсудите с командой понимание проекта и решение поставленных задач. Если мнение между командой расходиться, прийдите к общему мнение или попросите помощи у Заинтересованных сторон. ")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         v = nv
 
@@ -932,7 +1044,7 @@ def results_6(request):
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможной причиной может быть неудовлетворенность Заинтересованных сторон в получающемся результате, требования, которые применялись для решения задач, не соответсвуют требованиям Заказчика. ")  # Причина
         recommend.append("Возьмите пауза и уточните требования Заказчика, проверьте, где требования расходятся и исправьте данных ошибки перед переходом на следующий этап. ")  # Рекомендация
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         t = nt
 
@@ -940,7 +1052,7 @@ def results_6(request):
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха могут служить: ключевые архитектурные характеристики не продемонстрированы, конфигурации и интерфейсы не были продемонстрированы. ")  # Причина
         recommend.append("Предоставьте команде немного больше времени для того, чтобы найти ошибки и исправить их. Если есть трудности, которые команда не может решить сама, стоит обратить к заинтересованным сторонам для помощи или совета. ")  # Рекомендация
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     else:
         p = np
 
@@ -948,7 +1060,7 @@ def results_6(request):
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы».Причинами неуспеха могут служить: задачи не выполняются, отставание по срокам, простои в проекте, команда не справляется с задачами. ")  # Причина
         recommend.append("Перераспределите задачи между членами команды, найдите кого-то нового в команду с большей квалификацией для помощи, приостановите работу, разберитесь с незакрытыми задачами, перераспределите ресурсы и сроки выполнения и продолжите работу, исключая возникшие риски. ")  # Рекомендация
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         r = nr
 
@@ -956,7 +1068,7 @@ def results_6(request):
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Возможно отставание по срокам и Заинтересованные стороны не довольны достигаемым результатом. ")  # Причина
         recommend.append("Изучите выполнямые задачи,посмотрите в каком состоянии задачи каждого из членов команды. Помогите или перераспределите задачи у тех, кто не может решить поставленные задачи. Уточните у Заинетресованных сторон, какой результат они ожадают на следующем цикле. ")  # Рекомендация
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         k = nk
 
@@ -966,7 +1078,7 @@ def results_6(request):
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Работа с использованием выбранных инструментов началась, но возникли трудности.Возможно, выбранные методы не подходят для реализации поставленных задач, предложенные Заказчиками инструменты команде незнакомы или неудобны.  ")  # Причина
         recommend.append("Проанализируйте существующие методы и инструменты и выберите те, которые больше всего подходят для проекта вашего типа. Проконсультируйте с заинтересованными сторонами, обсудите внутри команды новые инструменты и предложите их на встрече. ")  # Рекомендация
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     else:
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны».Причинами неуспеха могут служить: практики и инструменты не используются, команда отстает по срокам, инструменты не подходят для разработки, в команде есть недопонимание и разногласия по поводу выбранных средств.  ")
@@ -976,7 +1088,7 @@ def results_6(request):
 
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
@@ -1027,6 +1139,8 @@ def results_7(request):
         list8_ = request.POST.getlist('В разработке')
         list9_ = request.POST.getlist('В использовании')
         list10_ = request.POST.getlist('Работает хорошо')
+        projectname = request.POST.get('Проект')
+
 
 
     udovletvoreny_dlya_razvorachivaniya = repl(list_, udovletvoreny_dlya_razvorachivaniya)
@@ -1056,7 +1170,7 @@ def results_7(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Заинтересованные стороны до конца не удовлетворены получившимся результатом. ")  # Причина
         recommend.append("Обсудите неполучившиеся моменты и исправьте их в ближайщие сроки. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         z = nz
 
@@ -1064,7 +1178,7 @@ def results_7(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». Возможно, получившийся результат неудобен или не до конца соответсвует обсуждаемым итогам. ")  # Причина
         recommend.append("Соберитесь командой для исправления недочетов перед завершающим этапом проектной работы. Уточните у Заказчика, какие места требуют исправлений. ")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         v = nv
 
@@ -1074,7 +1188,7 @@ def results_7(request):
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможной причиной может быть неудовлетворенность Заинтересованных сторон в получающемся результате, требования, которые применялись для решения задач, не соответсвуют требованиям Заказчика. ")  # Причина
         recommend.append("Возьмите пауза и уточните требования Заказчика, проверьте, где требования расходятся и исправьте данных ошибки перед переходом на следующий этап. ")  # Рекомендация
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможно, остались невыполненные требования или Заказчик не до конца доволен получившимся результатом. ")
@@ -1087,7 +1201,7 @@ def results_7(request):
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха могут служить: ключевые архитектурные характеристики не продемонстрированы, конфигурации и интерфейсы не были продемонстрированы. ")  # Причина
         recommend.append("Предоставьте команде немного больше времени для того, чтобы найти ошибки и исправить их. Если есть трудности, которые команда не может решить сама, стоит обратить к заинтересованным сторонам для помощи или совета. ")  # Рекомендация
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     else:
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». На данном этапе может быть еще не готова документация, остались незаконченные задачи после тестирования, небольшие оставания по срокам.")
@@ -1098,7 +1212,7 @@ def results_7(request):
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы». На данном этапе могут остаться небольшие незавершенные задачи, причинами неуспеха может быть неудовлетворенность заинтересованных сторон в получившемся результате или отставани по срокам. ")  # Причина
         recommend.append("Не заполняйте итоговую документацию, если работа не закончена до конца. Предупретите Заказчика, что будут небольшие простои и завершите рабоут корректно. ")  # Рекомендация
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         r = nr
 
@@ -1106,7 +1220,7 @@ def results_7(request):
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Причиной неуспеха данной альфы может быть неслаженная командая работа, отставание по срокам и неудовлетворенность Заинтересованных сторон получившимся результатом. ")  # Причина
         recommend.append("Пристановите работу и перераспределите ресурсы. Закончите работу до конца и приступите к заполнению итоговой документации.")  # Рекомендация
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         k = nk
 
@@ -1116,7 +1230,7 @@ def results_7(request):
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». На данном этапе возможной причиной может быть неполный доступ членов команды к ресурсам. Возможно, некоторые члены команды отстают по срокам по сдаче индивидуальных задач. ")  # Причина
         recommend.append("Обсудите с членами команды сложности, которые могли у них возникнуть. Решите проблему, обратившись за помощью к Заинтересованным сторонам, и закройте оставшиеся задачи. ")  # Рекомендация
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     else:
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология работы' влияние оказывают альфы «Команда» и «Заинтересованные стороны». На данном этапе возможной причиной может быть неполный доступ членов команды к ресурсам. Возможно, некоторые члены команды отстают по срокам по сдаче индивидуальных задач. ")  # Причина
@@ -1125,7 +1239,7 @@ def results_7(request):
 
     # Работа с базой
     author = request.user
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})
 
@@ -1190,6 +1304,8 @@ def results_8(request):
         list13_ = request.POST.getlist('В использовании')
         list14_ = request.POST.getlist('Работает хорошо')
         list15_ = request.POST.getlist('Не используется')
+        projectname = request.POST.get('Проект')
+
 
     udovletvoreny_dlya_razvorachivaniya = repl(list_, udovletvoreny_dlya_razvorachivaniya)
     udovletvoreny_v_ispolzovanii = repl(list2_, udovletvoreny_v_ispolzovanii)
@@ -1229,7 +1345,7 @@ def results_8(request):
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Заинтересованные стороны до конца не удовлетворены получившимся результатом. ")  # Причина
         recommend.append("Рассмотрите проблемные места и неполучившиемя задачи, исправьте их в ближайщие сроки. ")  # Рекомендация
-        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author)
+        z = get_value_for_graph(cycle_, "zainteresovannye_storony", author, projectname)
     else:
         res.append("Сущность Заинтересованные стороны не достигла нормального состояния.")
         reason.append("Заинтересованные стороны до конца не удовлетворены получившимся результатом. ")  # Причина
@@ -1242,7 +1358,7 @@ def results_8(request):
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». Возможно, получившийся результат неудобен или не до конца соответсвует обсуждаемым итогам. ")  # Причина
         recommend.append("Соберитесь командой для обсуждения получившихся результатов, если есть возможность для исправления недочетов, воспользуйтесь ею. Сделайте выводы для дальнейших проектных работ.")  # Рекомендация
-        v = get_value_for_graph(cycle_, "vosmojnost", author)
+        v = get_value_for_graph(cycle_, "vosmojnost", author, projectname)
     else:
         res.append("Сущность Возможность не достигла нормального состояния.")
         reason.append("На альфу 'Возможность' прямое влияние оказывает альфа «Заинтересованные стороны». Причиной неудачи данной альфы может быть то, что система не приносит выгоды или дохода, возможно, в рамках вашего проекта данные пункты необязательны. ")# Причина
@@ -1253,7 +1369,7 @@ def results_8(request):
         res.append("Сущность Требования не достигла нормального состояния.")
         reason.append("На альфу 'Требования' влияют альфы «Возможность» и «Заинтересованные стороны». Возможно, остались невыполненные требования или Заказчик не до конца доволен получившимся результатом. ")
         recommend.append("Обсудите с Заказчиком требования, которые остались невыполненными. Сделайте выводы для работы в следующих проектах.  ")
-        t = get_value_for_graph(cycle_, "trebovaniya", author)
+        t = get_value_for_graph(cycle_, "trebovaniya", author, projectname)
     else:
         t = nt
 
@@ -1263,7 +1379,7 @@ def results_8(request):
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха на данном этапе может служить неудовлетворенность Заинтересованных сторон в итоговом решении.  ")  # Причина
         recommend.append("Оцените проделанную работу и найдите слабые места. Обсудите их с Заинтересованными сторонами и полученные навыки применяйте в следующих проектах. ")  # Рекомендация
-        p = get_value_for_graph(cycle_, "programmnaya_sistema", author)
+        p = get_value_for_graph(cycle_, "programmnaya_sistema", author, projectname)
     elif gotova != norm_gotova and ekspluatirueca != norm_ekspluatirueca or gotova != norm_gotova and vyvedena_iz_ekspluatacii != norm_vyvedena_iz_ekspluatacii or ekspluatirueca != norm_ekspluatirueca and vyvedena_iz_ekspluatacii != norm_vyvedena_iz_ekspluatacii:
         res.append("Сущность Программная система не достигла нормального состояния.")
         reason.append("На альфу 'Программная система' влияние оказывает альфа «Работа». Причинами неуспеха на данном этапе может служить неудовлетворенность Заинтересованных сторон в итоговом решении.  ")  # Причина
@@ -1281,7 +1397,7 @@ def results_8(request):
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы». На данном этапе могут остаться небольшие незавершенные задачи, причинами неуспеха может быть неудовлетворенность заинтересованных сторон в получившемся результате или отставани по срокам. ")  # Причина
         recommend.append("Проверьте поставленные в начале проекта и проанализируйте завершение рабочего проекта. Поговорите с Заинтересованными стороными, прислушайтесь к советами и применяйте их в дальнейших проектах. ")  # Рекомендация
-        r = get_value_for_graph(cycle_, "rabota", author)
+        r = get_value_for_graph(cycle_, "rabota", author, projectname)
     else:
         res.append("Сущность Работа не достигла нормального состояния.")
         reason.append("На альфу 'Работа' влияние оказывают альфы «Требования», «Возможность», «Технология работы». На данном этапе могут остаться небольшие незавершенные задачи, причинами неуспеха может быть неудовлетворенность заинтересованных сторон в получившемся результате или отставани по срокам. ")  # Причина
@@ -1294,7 +1410,7 @@ def results_8(request):
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Причиной неуспеха данной альфы может быть неслаженная командая работа, отставание по срокам и неудовлетворенность Заинтересованных сторон получившимся результатом. ")  # Причина
         recommend.append("Определите с командой все трудные моменты в работе на протяжении хода проекта, сделайте выводы и применяйте полученные навыки для участия в следующих проектах.")  # Рекомендация
-        k = get_value_for_graph(cycle_, "komanda", author)
+        k = get_value_for_graph(cycle_, "komanda", author, projectname)
     else:
         res.append("Сущность Команда не достигла нормального состояния.")
         reason.append("На альфу 'Команда' влияние оказывает альфа «Заинтересованные стороны». Причиной неуспеха данной альфы может быть неслаженная командая работа, отставание по срокам и неудовлетворенность Заинтересованных сторон получившимся результатом. ")  # Причина
@@ -1308,7 +1424,7 @@ def results_8(request):
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Причиной неуспеха может служить неполное использование запланированных методов и инструментов при разработке, выбранные методики отличались от заявленных. ")  # Причина
         recommend.append("Проанализируйте с командой конечный выбор инструментальных средст для разработки и обоснуйте. Сделайте выводы для участия в  следующих проектах. ")  # Рекомендация
-        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author)
+        tr = get_value_for_graph(cycle_, "tehnologiya_raboty", author, projectname)
     elif rabotaet_horosho != norm_rabotaet_horosho and vispolzovanii != norm_vispolzovanii or vispolzovanii != norm_vispolzovanii and ne_ispolzueca != norm_ne_ispolzueca or rabotaet_horosho != norm_rabotaet_horosho and ne_ispolzueca != norm_ne_ispolzueca:
         res.append("Сущность Технология работы не достигла нормального состояния.")
         reason.append("На альфу 'Технология' влияние оказывают альфы «Команда» и «Заинтересованные стороны». Причиной неуспеха может служить неполное использование запланированных методов и инструментов при разработке, выбранные методики отличались от заявленных. ")  # Причина
@@ -1321,7 +1437,7 @@ def results_8(request):
         tr = ntr - 1
 
     # Работа с базой
-    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author)
+    z, v, t, p, r, k, tr = get_val(cycle_, z, v, t, p, r, k, tr, author, projectname)
 
     graph_div = plotly.offline.plot(graph(nz, nv, nt, np, nr, nk, ntr, z, v, t, p, r, k, tr), auto_open=False, output_type="div")
     return render(request, 'main/results.html', {'res': res, "reason": reason, "recommend": recommend, "graph_div": graph_div})

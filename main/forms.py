@@ -2,9 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-
-
-# Create your forms here.
+from django.forms import ModelForm, TextInput
+from .models import Estimation
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -29,3 +28,15 @@ class NewUserForm(UserCreationForm):
 		self.fields['username'].help_text = ""
 		self.fields['password1'].help_text = ""
 		self.fields['password2'].help_text = ""
+
+class EstimationForm(ModelForm):
+
+	class Meta:
+		model = Estimation
+		fields = ["projectname"]
+		widgets = {
+			"projectname": TextInput(attrs = {
+			"class": "form-style",
+			"placeholder": "Название проекта"
+			})
+		}

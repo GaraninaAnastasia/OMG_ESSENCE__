@@ -3,8 +3,19 @@
 
 
 {% block content %}
-<form action="results_1" method="post">
+<form action="results_1" method="POST">
         {% csrf_token %}
+
+<!--    <input type="text" name = "Проект" >-->
+
+<h2>Выберите проект</h2>
+
+<select name = "Проект" class="select-css">
+    {%for my_pr in my_projects%}
+    <option >{{my_pr.projectname}}</option>
+    {% endfor %}
+</select>
+
 <div class="check-group2">
 <h1>Заинтересованные стороны</h1>
 </div>

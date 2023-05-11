@@ -329,3 +329,10 @@ font-weight: 500;
 nav img{
 width: 50px;
 }
+
+h5 {
+  font-weight: 600;
+  color: #102770;
+  line-height: 1px;
+  font-size: 1.7em;
+}

@@ -16,6 +16,7 @@
 				<a>Для оценки необходимо зарегистрироваться или войти.</a><br>
 				{% if user.is_authenticated %}
 					<a href="{% url 'standartproject' %}" class="btn mt-4" >Оценить проект</a>
+					<a href="{% url 'create' %}" class="btn mt-4" >Создать проект</a>
 				{% endif %}
 
 <!--				<div class="form">-->
